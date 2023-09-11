@@ -1,7 +1,7 @@
 <#PSScriptInfo
 
 .SYNOPSIS
-An arrow driven, single and multiselect menu.
+A powershell arrow driven, single and multiselect menu.
 
 .DESCRIPTION
 This script can be used to generate a single or multiselect
@@ -166,22 +166,3 @@ function New-Select-Menu
 		}
 	}
 }
-
-# DEMO
-$Options = @()
-
-for ($i = 0; $i -le 10; $i ++) {
-    $Options = $Options + "Option $i"
-}
-
-Clear-Host
-
-# Example 1 (single select)
-New-Select-Menu $Options
-Pause
-
-#Example 2 (multiselect)
-New-Select-Menu $Options -Multiselect
-Pause
-
-Return
