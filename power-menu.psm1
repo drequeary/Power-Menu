@@ -1,7 +1,7 @@
 <#PSScriptInfo
 
 .SYNOPSIS
-A powershell arrow driven, single and multiselect menu.
+A powershell module for creating arrow driven, single and multiselect menus.
 
 .DESCRIPTION
 This script can be used to generate a single or multiselect
