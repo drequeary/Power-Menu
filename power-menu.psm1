@@ -1,15 +1,15 @@
 <#PSScriptInfo
 
 .SYNOPSIS
-A powershell module for creating arrow driven, single and multiselect menus.
+A powershell arrow driven, single and multiselect menu.
 
 .DESCRIPTION
 This script can be used to generate a single or multiselect
 menu with up and down navigation then return selected item(s).
 
 .EXAMPLE
-New-Select-Menu -Options @("Option 1", "Option 2")
-New-Select-Menu -Options @("Option 1", "Option 2") -Multiselect
+New-SelectMenu -Options @("Option 1", "Option 2")
+New-SelectMenu -Options @("Option 1", "Option 2") -Multiselect
 
 .NOTES
 CONTROLS
@@ -29,8 +29,7 @@ CONTROLS
         Uses modern emojis for checkboxes instead of ugly ascii.
         Removed J and K controls.
 #>
-
-function Draw-Select-Menu
+function Draw-Menu
 {
     param (
         $Options, 
@@ -39,10 +38,13 @@ function Draw-Select-Menu
         $Multiselect
     )
 
+    # Loop through options, highlighting current cursor position.
     for($i = 0; $i -le $Options.length; $i ++) {
         if($null -ne $Options[$i]) {
             $Option = $Options[$i]
 
+            # For multiselect menus, show a checkmark for choosen items
+            # or x out for non-choosen items.
             if ($Multiselect) {
                 if ($CurrentSelection -contains $i) {
                     $Option = "[✅] " + $Option
@@ -51,6 +53,9 @@ function Draw-Select-Menu
                 }
             }
 
+            # For single select menus, show green highlight and
+            # an arrow emoji for highlighted item. Else just
+            # display the option.
             if ($i -eq $POS) {
                 Write-Host "➡️ $Option" -ForegroundColor Green
 			} else {
@@ -60,7 +65,7 @@ function Draw-Select-Menu
     }
 }
 
-function Set-Multi-Selection
+function Set-MultiSelect
 {
 	param (
         $POS, 
@@ -68,7 +73,7 @@ function Set-Multi-Selection
     )
 
 	if ($CurrentSelection -contains $POS){ 
-		$Result = $CurrentSelection | where { $_ -ne $POS }
+		$Result = $CurrentSelection | Where-Object { $_ -ne $POS }
 	} else {
 		$CurrentSelection += $POS
 		$Result = $CurrentSelection
@@ -77,7 +82,7 @@ function Set-Multi-Selection
 	$Result
 }
 
-function New-Select-Menu
+function New-SelectMenu
 {
     param (
         [array] $Options,
@@ -92,7 +97,7 @@ function New-Select-Menu
     if ($Options.length -gt 0) {
         try {
             [console]::CursorVisible = $False
-            Draw-Select-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect 
+            Draw-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect 
 
             while ($Key -ne 13 -and $Key -ne 27) {
                 $Key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
@@ -119,7 +124,7 @@ function New-Select-Menu
 
                 # SPACEBAR SELECTS AN OPTION IN MULTISELECT MENU
                 if ($Key -eq 32) { 
-                    $CurrentSelection = Set-Multi-Selection -POS $POS -CurrentSelection $CurrentSelection 
+                    $CurrentSelection = Set-MultiSelect -POS $POS -CurrentSelection $CurrentSelection 
                 }
 
                 # ESC QUITS MENU
@@ -135,7 +140,7 @@ function New-Select-Menu
                         Clear-Host
                     }
 
-                    Draw-Select-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection
+                    Draw-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection
                 }
             }
         } finally {

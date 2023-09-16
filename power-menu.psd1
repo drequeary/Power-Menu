@@ -58,7 +58,7 @@
     # NestedModules = @()
     
     # Functions to export from this module
-    FunctionsToExport = 'New-Select-Menu'
+    FunctionsToExport = 'New-SelectMenu'
     
     # Cmdlets to export from this module
     # CmdletsToExport = '*'
