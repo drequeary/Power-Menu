@@ -1,7 +1,7 @@
 # Powershell Power Menu
 A powershell arrow driven, single and multiselect menu.
 
-![Power Menu demo](https://cdn.drequeary.me/public/assets/img/power-menu-demo.gif)
+[demo](https://cdn.drequeary.me/public/assets/img/power-menu-demo.gif)
 
 # Manual Installation
 - Download zip
