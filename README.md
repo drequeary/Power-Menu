@@ -15,5 +15,5 @@ A powershell arrow driven, single and multiselect menu.
 ## Creating Multiselect Menu
 `New-SelectMenu @("Option 1", "Option 2", "Option 3") -Multiselect`
 
-## Credits
+# Credits
 This is a slightly modified version of ps-menu by chrisseroka. https://github.com/chrisseroka/ps-menu
