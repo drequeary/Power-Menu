@@ -1,5 +1,5 @@
 # Powershell Power Menu
-A powershell arrow driven, single and multiselect menu.
+Powershell module for creating arrow driven/multiselect menus.
 
 [demo](https://cdn.drequeary.me/public/assets/img/power-menu-demo.gif)
 
