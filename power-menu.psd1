@@ -4,7 +4,7 @@
     RootModule = 'power-menu.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.0.0'
+    ModuleVersion = '1.0.1'
     
     # ID used to uniquely identify this module
     GUID = '652b2326-2d29-4e86-8149-03828d755032'
@@ -22,7 +22,7 @@
     Description = 'Powershell module for generating arrow drive, single and multiselect menus.'
     
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '7.0'
+    PowerShellVersion = '5.0'
     
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''

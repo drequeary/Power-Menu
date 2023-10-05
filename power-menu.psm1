@@ -20,6 +20,10 @@ CONTROLS
     ESC - exit menu (returns null)
 
 .CREDITS
+    Developer - DeAndre Wilson @DreQueary.
+    GitHub - https://github.com/drequeary
+    Repository - https://github.com/drequeary/power-menu
+
     This is a slightly modified version of ps-menu by chrisseroka
     https://github.com/chrisseroka/ps-menu
 
@@ -28,6 +32,25 @@ CONTROLS
         Added clear-host for when menu options overflow window height.
         Uses modern emojis for checkboxes instead of ugly ascii.
         Removed J and K controls.
+#>
+
+$PSVersion = $Host.Version.major
+
+<#
+.SYNOPSIS
+    Renders menu options.
+
+.PARAMETER Options
+    Array of options to display in menu list.
+
+.PARAMETER POS
+    Position of cursor.
+
+.PARAMETER CurrentSelection
+    Current selected menu item index number.
+
+.PARAMETER Multiselect
+    Display as multiselect menu.
 #>
 function Draw-Menu
 {
@@ -45,26 +68,50 @@ function Draw-Menu
 
             # For multiselect menus, show a checkmark for choosen items
             # or x out for non-choosen items.
-            if ($Multiselect) {
+            if ($Multiselect -and $PSVersion -ge 7) {
                 if ($CurrentSelection -contains $i) {
                     $Option = "[✅] " + $Option
                 } else {
                     $Option = "[✖️] " + $Option
+                }
+            } elseif ($Multiselect) {
+                if ($CurrentSelection -contains $i) {
+                    $Option = "[*] " + $Option
+                } else {
+                    $Option = "[ ] " + $Option
                 }
             }
 
             # For single select menus, show green highlight and
             # an arrow emoji for highlighted item. Else just
             # display the option.
-            if ($i -eq $POS) {
-                Write-Host "➡️ $Option" -ForegroundColor Green
-			} else {
-				Write-Host "   $Option"
-			}
+            if ($PSVersion -ge 7) {
+                if ($i -eq $POS) {
+                    Write-Host "➡️ $Option" -ForegroundColor Green
+                } else {
+                    Write-Host "   $Option"
+                }
+            } else {
+                if ($i -eq $POS) {
+                    Write-Host "> $Option" -ForegroundColor Green
+                } else {
+                    Write-Host "  $Option"
+                }
+            }
         }
     }
 }
 
+<#
+.SYNOPSIS
+    Set or multiselect option.
+
+.PARAMETER POS
+    Position of cursor.
+
+.PARAMETER CurrentSelection
+    Current selected menu item index number.
+#>
 function Set-MultiSelect
 {
 	param (
@@ -82,6 +129,34 @@ function Set-MultiSelect
 	$Result
 }
 
+<#
+.SYNOPSIS
+    Renders select or multiselect menu.
+
+.DESCRIPTION
+    Displays menu and listens for keyboard input.
+    As menu controls are pressed, menu updates selected item.
+    Upon pressing enter, return selected item or item(s) as,
+    an array.
+
+    If the esc key is pressed, exit menu, returning null.
+
+    .PARAMETER Options
+        Array of options to display in menu list.
+
+    .PARAMETER Multiselect
+        Display as menu options as multiselect.
+
+    .PARAMETER ReturnIndex
+        Set whether to return selected item(s).
+
+.EXAMPLE
+    EXAMPLE 1 (single select)
+    New-SelectMenu @("Option 1", "Option 2", "Option 3")
+
+    EXAMPLE 2 (multiselect)
+    New-SelectMenu @("Option 1", "Option 2", "Option 3") -Multiselect
+#>
 function New-SelectMenu
 {
     param (
