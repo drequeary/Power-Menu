@@ -8,8 +8,11 @@ This script can be used to generate a single or multiselect
 menu with up and down navigation then return selected item(s).
 
 .EXAMPLE
-New-SelectMenu -Options @("Option 1", "Option 2")
-New-SelectMenu -Options @("Option 1", "Option 2") -Multiselect
+    EXAMPLE 1 (single select)
+    New-SelectMenu @("Option 1", "Option 2", "Option 3")
+
+    EXAMPLE 2 (multiselect)
+    New-SelectMenu @("Option 1", "Option 2", "Option 3") -Multiselect
 
 .NOTES
 CONTROLS
@@ -149,13 +152,6 @@ function Set-MultiSelect
 
     .PARAMETER ReturnIndex
         Set whether to return selected item(s).
-
-.EXAMPLE
-    EXAMPLE 1 (single select)
-    New-SelectMenu @("Option 1", "Option 2", "Option 3")
-
-    EXAMPLE 2 (multiselect)
-    New-SelectMenu @("Option 1", "Option 2", "Option 3") -Multiselect
 #>
 function New-SelectMenu
 {
