@@ -33,7 +33,7 @@ CONTROLS
     Changes from original:
         Changed variable and function names.
         Added clear-host for when menu options overflow window height.
-        Uses modern emojis for checkboxes instead of ugly ascii.
+        Uses modern emojis for checkboxes instead of ugly ascii (optional).
         Removed J and K controls.
 #>
 
