@@ -72,7 +72,7 @@ function Draw-Menu
 
             # For multiselect menus, show a checkmark for choosen items
             # or x out for non-choosen items.
-            if ($Multiselect -and $PSVersion -ge 7) {
+            if ($Multiselect -and $PSVersion -ge 7 -and -not $NoEmoji) {
                 if ($CurrentSelection -contains $i) {
                     $Option = "[✅] " + $Option
                 } else {
@@ -89,7 +89,7 @@ function Draw-Menu
             # For single select menus, show green highlight and
             # an arrow emoji for highlighted item. Else just
             # display the option.
-            if ($PSVersion -ge 7) {
+            if ($PSVersion -ge 7 -and -not $NoEmoji) {
                 if ($i -eq $POS) {
                     Write-Host "➡️ $Option" -ForegroundColor Green
                 } else {
