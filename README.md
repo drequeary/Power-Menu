@@ -6,7 +6,7 @@ A powershell arrow driven, single and multiselect menu.
 # Requirements
 - Powershell 5.0+
 
-Note: Emoji requires. 7.0+
+
 
 # Manual Installation
 - Download zip
@@ -14,11 +14,32 @@ Note: Emoji requires. 7.0+
 - From C:\Program Files\WindowsPowerShell\Modules, open Terminal and run: `Import-Module power-menu`
 
 # Usage
+New-SelectMenu [option list] [command options]
+
+Will return a single selected item or an array of items (if multiselect is set).
+
+Will return `null` if `esc` key is pressed.
+
 ## Create Single Select Menu
 `New-SelectMenu @("Option 1", "Option 2", "Option 3")`
 
 ## Creating Multiselect Menu
 `New-SelectMenu @("Option 1", "Option 2", "Option 3") -Multiselect`
+
+# Command Options
+`Options` (array) - Array of menu options to display.
+
+`Multiselect` - Display option list as multiselect menu and return selected options.
+
+`NoEmoji` - Use standard ascii cursor instead of emojis.  
+Note: Emoji requires. 7.0+
+
+# Controls
+    UP - go up
+    DOWN - go down
+    ENTER - select (single select)
+    SPACE - select (multiselect)
+    ESC - exit menu (returns null)
 
 # Credits
 This is a slightly modified version of ps-menu by chrisseroka. https://github.com/chrisseroka/ps-menu
