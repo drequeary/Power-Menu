@@ -3,6 +3,11 @@ A powershell arrow driven, single and multiselect menu.
 
 [demo](https://cdn.drequeary.me/public/assets/img/power-menu-demo.gif)
 
+# Requirements
+- Powershell 5.0+
+
+Note: Emoji requires. 7.0+
+
 # Manual Installation
 - Download zip
 - Copy files to C:\Program Files\WindowsPowerShell\Modules\power-menu

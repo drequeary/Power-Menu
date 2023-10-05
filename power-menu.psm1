@@ -61,7 +61,8 @@ function Draw-Menu
         $Options, 
         $POS, 
         $CurrentSelection,
-        $Multiselect
+        $Multiselect,
+        $NoEmoji
     )
 
     # Loop through options, highlighting current cursor position.
@@ -152,13 +153,17 @@ function Set-MultiSelect
 
     .PARAMETER ReturnIndex
         Set whether to return selected item(s).
+
+    .PARAMETER NoEmoji
+        Do not render menu with emojis.
 #>
 function New-SelectMenu
 {
     param (
         [array] $Options,
         [switch] $Multiselect,
-        [switch] $ReturnIndex = $False
+        [switch] $ReturnIndex = $False,
+        [switch] $NoEmoji
     )
 
     $Key = 0
@@ -168,7 +173,7 @@ function New-SelectMenu
     if ($Options.length -gt 0) {
         try {
             [console]::CursorVisible = $False
-            Draw-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect 
+            Draw-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect -NoEmoji $NoEmoji
 
             while ($Key -ne 13 -and $Key -ne 27) {
                 $Key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
@@ -211,7 +216,7 @@ function New-SelectMenu
                         Clear-Host
                     }
 
-                    Draw-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection
+                    Draw-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection -NoEmoji $NoEmoji
                 }
             }
         } finally {
