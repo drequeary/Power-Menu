@@ -23,7 +23,7 @@ CONTROLS
     ESC - exit menu (returns null)
 
 .CREDITS
-    Developer - DeAndre Wilson @drequeary.
+    Developer - DeAndre Queary @drequeary.
     GitHub - https://github.com/drequeary
     Repository - https://github.com/drequeary/power-menu
 
