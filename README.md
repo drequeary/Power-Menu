@@ -1,7 +1,7 @@
 # Powershell Power Menu
-Powershell module for creating arrow driven/multiselect menus.
+Powershell module for creating arrow driven/multiselect menus. [See demo](https://cdn.deandrequeary.com/public/assets/img/power-menu-demo.mp4)
 
-[demo](https://cdn.deandrequeary.com/public/assets/img/power-menu-demo.mp4)
+![screenshot.png](screenshot.png)
 
 # Requirements
 - Powershell 5.0+

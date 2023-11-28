@@ -10,7 +10,7 @@
     GUID = '652b2326-2d29-4e86-8149-03828d755032'
     
     # Author of this module
-    Author = '@drequeary'
+    Author = 'DeAndre Wilson'
     
     # Company or vendor of this module
     CompanyName = 'Unknown'
