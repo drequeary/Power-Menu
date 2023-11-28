@@ -10,8 +10,9 @@ Powershell module for creating arrow driven/multiselect menus.
 
 # Manual Installation
 - Download zip
-- Copy files to C:\Program Files\WindowsPowerShell\Modules\power-menu
-- From C:\Program Files\WindowsPowerShell\Modules, open Terminal and run: `Import-Module power-menu`
+- Copy files to `C:\Program Files\WindowsPowerShell\Modules\power-menu`
+- Run `Set-ExecutionPolicy Unrestricted` as Admin in PowerShell to enable running .ps1 scripts.
+- From `C:\Program Files\WindowsPowerShell\Modules`, run: `Import-Module power-menu`
 
 # Usage
 New-SelectMenu [option list] [command options]
