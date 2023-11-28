@@ -40,4 +40,4 @@ Will return `null` if `esc` key is pressed.
     ESC - exit menu (returns null)
 
 # Credits
-This is a slightly modified version of ps-menu by chrisseroka. https://github.com/chrisseroka/ps-menu
+This is a modified version of ps-menu by chrisseroka. https://github.com/chrisseroka/ps-menu
