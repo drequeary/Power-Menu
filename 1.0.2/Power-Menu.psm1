@@ -23,7 +23,7 @@ CONTROLS
     ESC - exit menu (returns null)
 
 .CREDITS
-    Developer - DeAndre Wilson @DreQueary.
+    Developer - DeAndre Wilson @drequeary.
     GitHub - https://github.com/drequeary
     Repository - https://github.com/drequeary/power-menu
 
@@ -54,6 +54,9 @@ $PSVersion = $Host.Version.major
 
 .PARAMETER Multiselect
     Display as multiselect menu.
+
+.PARAMETER Emoji
+    Render menu options with emojis.
 #>
 function Draw-Menu
 {
@@ -62,7 +65,7 @@ function Draw-Menu
         $POS, 
         $CurrentSelection,
         $Multiselect,
-        $NoEmoji
+        $Emoji
     )
 
     # Loop through options, highlighting current cursor position.
@@ -72,7 +75,7 @@ function Draw-Menu
 
             # For multiselect menus, show a checkmark for choosen items
             # or x out for non-choosen items.
-            if ($Multiselect -and $PSVersion -ge 7 -and -not $NoEmoji) {
+            if ($Multiselect -and $PSVersion -ge 7 -and $Emoji) {
                 if ($CurrentSelection -contains $i) {
                     $Option = "[✅] " + $Option
                 } else {
@@ -89,7 +92,7 @@ function Draw-Menu
             # For single select menus, show green highlight and
             # an arrow emoji for highlighted item. Else just
             # display the option.
-            if ($PSVersion -ge 7 -and -not $NoEmoji) {
+            if ($PSVersion -ge 7 -and $Emoji) {
                 if ($i -eq $POS) {
                     Write-Host "➡️ $Option" -ForegroundColor Green
                 } else {
@@ -154,8 +157,8 @@ function Set-MultiSelect
     .PARAMETER ReturnIndex
         Set whether to return selected item(s).
 
-    .PARAMETER NoEmoji
-        Do not render menu with emojis.
+    .PARAMETER Emoji
+        Render menu options with emojis.
 #>
 function New-SelectMenu
 {
@@ -163,7 +166,7 @@ function New-SelectMenu
         [array] $Options,
         [switch] $Multiselect,
         [switch] $ReturnIndex = $False,
-        [switch] $NoEmoji
+        [switch] $Emoji
     )
 
     $Key = 0
@@ -173,7 +176,7 @@ function New-SelectMenu
     if ($Options.length -gt 0) {
         try {
             [console]::CursorVisible = $False
-            Draw-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect -NoEmoji $NoEmoji
+            Draw-Menu -Options $Options -POS $POS -CurrentSelection $CurrentSelection -Multiselect $Multiselect -Emoji $Emoji
 
             while ($Key -ne 13 -and $Key -ne 27) {
                 $Key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown").VirtualKeyCode
@@ -216,7 +219,7 @@ function New-SelectMenu
                         Clear-Host
                     }
 
-                    Draw-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection -NoEmoji $NoEmoji
+                    Draw-Menu -Options $Options -POS $POS -Multiselect $Multiselect -CurrentSelection $CurrentSelection -Emoji $Emoji
                 }
             }
         } finally {

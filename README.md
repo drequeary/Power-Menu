@@ -1,18 +1,16 @@
 # Powershell Power Menu
 Powershell module for creating arrow driven/multiselect menus.
 
-[demo](https://cdn.drequeary.me/public/assets/img/power-menu-demo.gif)
+[demo](https://cdn.deandrequeary.com/public/assets/img/power-menu-demo.mp4)
 
 # Requirements
 - Powershell 5.0+
-
-
 
 # Manual Installation
 - Download zip
 - Copy files to `C:\Program Files\WindowsPowerShell\Modules\power-menu`
 - Run `Set-ExecutionPolicy Unrestricted` as Admin in PowerShell to enable running .ps1 scripts.
-- From `C:\Program Files\WindowsPowerShell\Modules`, run: `Import-Module power-menu`
+- From `C:\Program Files\WindowsPowerShell\Modules`, run: `Import-Module Power-Menu`
 
 # Usage
 New-SelectMenu [option list] [command options]
@@ -32,8 +30,7 @@ Will return `null` if `esc` key is pressed.
 
 `Multiselect` - Display option list as multiselect menu and return selected options.
 
-`NoEmoji` - Use standard ascii cursor instead of emojis.  
-Note: Emoji requires. 7.0+
+`Emoji` - Render menu options with emojis.
 
 # Controls
     UP - go up
